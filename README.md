@@ -39,6 +39,15 @@ _**Important note if your project doesn't use ARC**: you must add the `-fobjc-ar
 }];
 ```
 
+or if you want pull to refresh from the bottom
+
+```objective-c
+[tableView addPullToRefreshWithActionHandler:^{
+    // prepend data to dataSource, insert cells at top of table view
+    // call [tableView.pullToRefreshView stopAnimating] when done
+} position:SVPullToRefreshPositionBottom];
+```
+
 If you’d like to programmatically trigger the refresh (for instance in `viewDidAppear:`), you can do so with:
 
 ```objective-c
