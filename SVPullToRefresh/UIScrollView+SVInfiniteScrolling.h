@@ -41,10 +41,11 @@ typedef NS_ENUM(NSUInteger, SVInfiniteScrollingState) {
 @property (nonatomic, readonly) SVInfiniteScrollingState state;
 @property (nonatomic, readonly) SVInfiniteScrollingDirection direction;
 @property (nonatomic, readwrite) BOOL enabled;
+@property (nonatomic, readwrite) BOOL resetScroll;
 
 - (void)setCustomView:(UIView *)view forState:(SVInfiniteScrollingState)state;
 
 - (void)startAnimating;
-- (void)stopAnimating;
+- (void)stopAnimatingShouldResetScroll:(BOOL)reset;
 
 @end

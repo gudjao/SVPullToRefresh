@@ -164,6 +164,7 @@ UIEdgeInsets scrollViewOriginalContentInsets;
         self.autoresizingMask = UIViewAutoresizingFlexibleWidth;
         self.state = SVInfiniteScrollingStateStopped;
         self.enabled = YES;
+        self.resetScroll = 1;
         
         self.viewForState = [NSMutableArray arrayWithObjects:@"", @"", @"", @"", nil];
     }
@@ -325,7 +326,8 @@ UIEdgeInsets scrollViewOriginalContentInsets;
     self.state = SVInfiniteScrollingStateLoading;
 }
 
-- (void)stopAnimating {
+- (void)stopAnimatingShouldResetScroll:(BOOL)reset {
+    self.resetScroll = reset;
     self.state = SVInfiniteScrollingStateStopped;
 }
 
@@ -358,17 +360,21 @@ UIEdgeInsets scrollViewOriginalContentInsets;
         
         switch (newState) {
             case SVInfiniteScrollingStateStopped:
-                [self resetScrollViewContentInset];
+                if(self.resetScroll) {
+                    [self resetScrollViewContentInset];
+                }
                 [self.activityIndicatorView stopAnimating];
                 break;
                 
             case SVInfiniteScrollingStateTriggered:
                 [self setScrollViewContentInsetForInfiniteScrolling];
-                //[self.activityIndicatorView startAnimating];
                 break;
                 
             case SVInfiniteScrollingStateLoading:
                 [self.activityIndicatorView startAnimating];
+                break;
+                
+            case SVInfiniteScrollingStateAll:
                 break;
         }
     }
