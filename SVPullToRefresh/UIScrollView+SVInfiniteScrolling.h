@@ -46,6 +46,7 @@ typedef NS_ENUM(NSUInteger, SVInfiniteScrollingState) {
 - (void)setCustomView:(UIView *)view forState:(SVInfiniteScrollingState)state;
 
 - (void)startAnimating;
+- (void)stopAnimating;
 - (void)stopAnimatingShouldResetScroll:(BOOL)reset;
 
 @end

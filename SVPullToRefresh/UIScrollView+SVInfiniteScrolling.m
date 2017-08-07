@@ -326,6 +326,11 @@ UIEdgeInsets scrollViewOriginalContentInsets;
     self.state = SVInfiniteScrollingStateLoading;
 }
 
+- (void)stopAnimating {
+    self.resetScroll = 1;
+    self.state = SVInfiniteScrollingStateStopped;
+}
+
 - (void)stopAnimatingShouldResetScroll:(BOOL)reset {
     self.resetScroll = reset;
     self.state = SVInfiniteScrollingStateStopped;
